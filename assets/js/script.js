@@ -10,7 +10,8 @@
 // WHEN the game is over
 // THEN I can save my initials and score
 
-var Questions = [
+// Questions and answers to be used in the quiz
+var questions = [
     {
         question: "Which is not a valid Javascript data type?",
         option1: "A string",
@@ -51,4 +52,43 @@ var Questions = [
         option4: "prompt('Hello?');",
         answer: "prompt('Hello');"
     },
+    {
+        question: "A function without a name is called an anonymous function.",
+        option1: "True",
+        option2: "False",
+        answer: "True"
+    },
+    {
+        question: "What do you call a function passed into another function as an argument?",
+        option1: "Recycled Function",
+        option2: "Hollaback Girl",
+        option3: "Callback Function",
+        option4: "Recursive Function",
+        answer: "Callback Function"
+    },
+    {
+        question: "Which of the following is not a type of loop in Javascript?",
+        option1: "For",
+        option2: "While",
+        option3: "Do...While",
+        option4: "Do Wah Diddy Baby Dum Diddy Do",
+        answer: "Do Wah Diddy Baby Dum Diddy Do"
+    },
+    {
+        question: "A return statement is unable to return a value. It can only end function execution.",
+        option1: "True",
+        option2: "False",
+        answer: "False"
+    },
+    {
+        question: "Math.random() by itself can generate the number 1.",
+        option1: "True",
+        option2: "False",
+        answer: "False"
+    },
 ];
+
+// Function to store questions in localStorage
+function storeQuestions() {
+    localStorage.("questions", JSON.stringify(questions));
+}
