@@ -179,4 +179,26 @@ function generateScore() {
     quizLengthEl.textContent = (quiz.length);
 }
 
+function restartGame() {
+    index = 0;
+    scoreCount = 0;
+    timeLeft = 90;
+    toggleCorrectEl.classList.add("correct-notify");
+    toggleWrongEl.classList.add("wrong-notify");
+    scoreContainerEl.classList.add("score-display");
+    return generateQuestion();
+}
+
+function saveScore() {
+    var localStorageData = JSON.parse(localStorage.getItem("high-score"));
+    if (localStorageData === null) {
+        localStorage.setItem("high-score", []);
+    }
+    var data = {name: userInitialsEl.value, score: scoreCount};
+    localStorageData.push(data);
+    localStorage.setItem("high-score", JSON.stringify(localStorageData));
+}
+
 startButtonEl.addEventListener("click", generateQuestion);
+restartButtonEl.addEventListener("click", restartGame);
+saveScoreEl.addEventListener("click", saveScore);
