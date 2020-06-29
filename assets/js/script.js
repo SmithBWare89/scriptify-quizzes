@@ -111,4 +111,23 @@ function generateQuestion() {
     }
 }
 
+function verifyAnswer(clickedAnswer) {
+    // Set confirmation displays to not show
+    toggleCorrectEl.classList.add("correct-notify");
+    toggleWrongEl.classList.add("wrong-notify");
+    // if clicked answer of question matches answer
+    if (clickedAnswer === quiz[index].correctAnswer) {
+        // increment score and index. display answer was correct
+        scoreCount++; 
+        index++;
+        toggleCorrectEl.classList.remove("correct-notify");
+    } else {
+        // do not increment score. display answer was incorrect
+        index++;
+        toggleWrongEl.classList.remove("wrong-notify");
+    }
+    // return to generate new question.
+    return generateQuestion();
+}
+
 startButtonEl.addEventListener("click", generateQuestion);
