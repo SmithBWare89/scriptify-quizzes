@@ -11,16 +11,16 @@
         <nav>
             <ul>
                 <!-- View High Scores -->
-                <li>View High Scores</li>
+                <li id="view-scores">View High Scores</li>
                 <!-- Timer -->
-                <li>Timer: <span id="timer">0</span></li>
+                <li>Timer: <span id="timer">90</span></li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main id="page-content">
         <section class="introduction">
             <!-- Introduction -->
-            <h1>Welcome to Scriptify Quizzes!</h1>
+            <h1 class="title">Welcome to Scriptify Quizzes!</h1>
             <!-- Explain Rules -->
             <h3>Try to answer as many questions as possible within the allotted time to test your knowledge on Javascript!</h3>
                 <p>Rules</p>
@@ -31,17 +31,28 @@
                     <li>Your score will be calculated at the end of the quiz. Aim to have the highest score to win!</li>
                 </ul>
             <!-- Start Button -->
-            <button type="submit" class="btn">Start Quiz!</button>
+            <button type="submit" class="btn" id="start-btn">Start Quiz!</button>
         </section>
-    <!-- Quiz Content -->
-        <!-- Question -->
-        <!-- UL -->
-            <!-- Option 1 -->
-            <!-- Option 2 -->
-            <!-- Option 3 -->
-            <!-- Option 4 -->
-        
-        <!-- Correct/Wrong -->
+        <section class="quiz-display">
+            <div id="quiz-container">
+            <h1 id="question-title" class="title"></h1>
+            <h3 id="correct-notify" class="notify correct-notify">Your last answer was correct!</h3>
+            <h3 id="wrong-notify" class="notify wrong-notify">Your last answer was incorrect!</h3>
+            </div>
+        </section>
+        <section class="score-display">
+                <div class="score-display-flex">
+                <h1 class="title">All done!</h1>
+                <h3>Your final score is: <span id="score-count"></span> out of <span id="quizLength"></span></h3>
+                    <label id="userInitialsLabel" for="userInitials">Enter your initials: </label>
+                    <input type="text" id="userInitials">
+                    <button type="submit" id="submit-score" class="btn">Submit Your Score!</button>
+                    <button type="submit" class="btn" id="restart-btn">Restart Quiz!</button>
+                </div>
+        </section>
+        <section class="high-score-display">
+    
+        </section>
     </main>
 <script src="./assets/js/script.js"></script>
 </body>
