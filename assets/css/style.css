@@ -47,3 +47,59 @@ header nav ul li {
     margin: 0;
 }
 /* Header Style End */
+
+/* Introduction Style Start */
+.introduction {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.title {
+    font-size: 55px;
+    color: var(--orange);
+    font-weight: 600;
+    text-shadow: 1px 1px 1px var(--gunmetal);
+    width: 60%;
+    text-align: center;
+}
+
+.introduction h3 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.introduction p {
+    margin-top: 5px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.introduction ul li {
+    font-size: 25px;
+    font-weight: 600;
+    text-align: justify;
+}
+
+.btn {
+    margin-top: 10px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    width: 50%;
+    font-size: 25px;
+    font-weight: 600;
+    background-color: var(--blue);
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+button:hover {
+    background: var(--gray);
+    color: var(--blue);
+    border: none;
+    outline: none;
+}
+/* Introduction Style End */
