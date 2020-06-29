@@ -76,6 +76,7 @@ var quiz = [
 var pageContentEl = document.querySelector("#page-content");
 var index = 0;
 var scoreCount = 0;
+var timeLeft = 90;
 
 // Header Variables
 var timerEl = document.querySelector("#timer");
@@ -91,6 +92,14 @@ var quizContainerEl = document.querySelector("#quiz-container");
 var questionContainerEl = document.querySelector("#question-title");
 var toggleCorrectEl = document.querySelector("#correct-notify");
 var toggleWrongEl = document.querySelector("#wrong-notify");
+
+// Final Score Page Variables
+var scoreContainerEl = document.querySelector(".score-display");
+var scoreDisplayEl = document.querySelector("#score-count");
+var quizLengthEl = document.querySelector("#quizLength");
+var restartButtonEl = document.querySelector("#restart-btn");
+var saveScoreEl = document.querySelector("#submit-score");
+var userInitialsEl = document.querySelector("#userInitials");
 
 function countDown() {
     setInterval(function() {
@@ -158,6 +167,16 @@ function verifyAnswer(clickedAnswer) {
     }
     // return to generate new question.
     return generateQuestion();
+}
+
+function generateScore() {
+    // Remove introduction
+    sectionContainerEl.classList.add("quiz-display");
+    // Inform user they're all done
+    scoreContainerEl.classList.remove("score-display");
+    // Show user score count
+    scoreDisplayEl.textContent = scoreCount;
+    quizLengthEl.textContent = (quiz.length);
 }
 
 startButtonEl.addEventListener("click", generateQuestion);
