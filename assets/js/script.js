@@ -93,6 +93,7 @@ var userInitialsEl = document.querySelector("#userInitials");
 
 var index = 0;
 var timeLeft = 90;
+var scoreCount = 0;
 
 
 function countDown() {
