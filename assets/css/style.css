@@ -103,3 +103,35 @@ button:hover {
     outline: none;
 }
 /* Introduction Style End */
+
+/* Quiz Style Start */
+.quiz-display {
+    display: none;
+}
+
+#quiz-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.quiz-btn {
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 25px;
+    font-weight: 600;
+    background-color: var(--blue);
+    border: none;
+    outline: none;
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    width: 50%;
+}
+
+.question-title {
+    font-size: 30px;
+}
+/* Quiz Style End */
