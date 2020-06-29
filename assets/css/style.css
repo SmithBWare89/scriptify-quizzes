@@ -104,7 +104,7 @@ button:hover {
 }
 /* Introduction Style End */
 
-/* Quiz Style Start */
+/* Quiz Style */
 .quiz-display {
     display: none;
 }
@@ -133,6 +133,18 @@ button:hover {
 
 .question-title {
     font-size: 30px;
+}
+
+#correct-notify,
+#wrong-notify {
+    font-size: 30px;
+}
+.correct-notify {
+    display: none;
+}
+
+.wrong-notify {
+    display: none;
 }
 /* Quiz Style End */
 
@@ -180,3 +192,23 @@ button#restart-btn
     width: 25%;
 }
 /* Generate Score Style End */
+
+/* High Score Style Start */
+.high-score-display {
+    display: none;
+}
+
+.display-title {
+    font-size: 3.0em;
+    color: var(--orange);
+    text-shadow: 1px 1px 1px var(--gunmetal);
+    border-bottom: 1px solid var(--gunmetal);
+}
+
+.score-div {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2.0em;
+    font-weight: 600;
+}
+/* High Score Style End */

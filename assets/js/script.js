@@ -1,4 +1,3 @@
-// Quiz Questions
 var quiz = [
     {
         question: "Which is not a valid Javascript data type?",
@@ -71,35 +70,30 @@ var quiz = [
         correctAnswer: "Do Wah Diddy Baby Dum Diddy Do"
     },
 ];
-
-// Global Variables
-var pageContentEl = document.querySelector("#page-content");
-var index = 0;
-var scoreCount = 0;
-var timeLeft = 90;
-
-// Header Variables
-var timerEl = document.querySelector("#timer");
 var viewScoresEl = document.querySelector("#view-scores");
+var scoreSectionEl = document.querySelector(".high-score-display");
 
-// Introduction Page Variables
+var pageContentEl = document.querySelector("#page-content");
 var introductionEl = document.querySelector(".introduction");
-var startButtonEl = document.querySelector("#start-btn");
+var timerEl = document.querySelector("#timer");
+var buttonEl = document.querySelector("#start-btn");
 
-// Quiz Page Variables
 var sectionContainerEl = document.querySelector(".quiz-display");
 var quizContainerEl = document.querySelector("#quiz-container");
 var questionContainerEl = document.querySelector("#question-title");
 var toggleCorrectEl = document.querySelector("#correct-notify");
 var toggleWrongEl = document.querySelector("#wrong-notify");
 
-// Final Score Page Variables
 var scoreContainerEl = document.querySelector(".score-display");
 var scoreDisplayEl = document.querySelector("#score-count");
 var quizLengthEl = document.querySelector("#quizLength");
 var restartButtonEl = document.querySelector("#restart-btn");
 var saveScoreEl = document.querySelector("#submit-score");
 var userInitialsEl = document.querySelector("#userInitials");
+
+var index = 0;
+var timeLeft = 90;
+
 
 function countDown() {
     setInterval(function() {
@@ -117,31 +111,24 @@ function countDown() {
     }, 1000)
 }
 
-function generateQuestion() {
-    // If timer is set to 90 then start timer
+function generateQuestion () {
     if (timeLeft === 90) {
         countDown();
     }
 
-    // Remove introduction section from page
+    scoreSectionEl.classList.add("high-score-display");
     introductionEl.remove();
-    // Display quiz questions section
+    scoreContainerEl.classList.add("score-display");
     sectionContainerEl.classList.remove("quiz-display");
-    // If the index is less than the length of the quiz
+
     if (index < quiz.length) {
-        // Fill question container with quesiton at index
         questionContainerEl.textContent = quiz[index].question;
-        // Store answers at index
         var answers = quiz[index].answers;
 
-        // For each answer stored
         answers.forEach(function(element) {
-        // Create a button
         var optionButton = document.createElement("button");
-        // Set innerHTML to text of answer choice
         optionButton.innerHTML = element;
         optionButton.className = "quiz-btn";
-        // After clicking button run verification
         optionButton.addEventListener("click", () => {verifyAnswer(element)})
         questionContainerEl.appendChild(optionButton);
         })
@@ -149,23 +136,17 @@ function generateQuestion() {
 }
 
 function verifyAnswer(clickedAnswer) {
-    // Set confirmation displays to not show
     toggleCorrectEl.classList.add("correct-notify");
     toggleWrongEl.classList.add("wrong-notify");
-    // if clicked answer of question matches answer
     if (clickedAnswer === quiz[index].correctAnswer) {
-        // increment score and index. display answer was correct
-        scoreCount++; 
+        scoreCount++;
         index++;
         toggleCorrectEl.classList.remove("correct-notify");
     } else {
-        // do not increment score. display answer was incorrect
         index++;
-        // decrease time for wrong answers
         timeLeft -= 5;
         toggleWrongEl.classList.remove("wrong-notify");
     }
-    // return to generate new question.
     return generateQuestion();
 }
 
@@ -199,6 +180,67 @@ function saveScore() {
     localStorage.setItem("high-score", JSON.stringify(localStorageData));
 }
 
-startButtonEl.addEventListener("click", generateQuestion);
+function displayScores() {  
+    scoreSectionEl.classList.remove("high-score-display");
+    scoreContainerEl.classList.add("score-display");
+    sectionContainerEl.classList.add("quiz-display");
+    introductionEl.remove();
+
+    var scoreSectionTitle = document.createElement("h1");
+    scoreSectionTitle.innerHTML = "Here are the high scores!";
+    scoreSectionTitle.className = "title";
+    scoreSectionTitle.setAttribute("style", "margin: 0 auto;");
+    scoreSectionEl.appendChild(scoreSectionTitle);
+
+    var scoreTable = document.createElement("table");
+    scoreTable.setAttribute("style", 'margin: 0 auto;')
+    scoreSectionEl.appendChild(scoreTable);
+
+    var scoreTableHeader = document.createElement("thead");
+    scoreTable.appendChild(scoreTableHeader);
+
+    var scoreTableName = document.createElement("th");
+    scoreTableName.innerHTML = "Name";
+    scoreTableName.className = "display-title";
+    scoreTableHeader.appendChild(scoreTableName);
+
+    var scoreTableScore = document.createElement("th");
+    scoreTableScore.innerHTML = "Score";
+    scoreTableScore.className = "display-title";
+    scoreTableHeader.appendChild(scoreTableScore);
+
+    var scoreTableBody = document.createElement("tbody");
+    scoreTableBody.setAttribute("style", "text-align: center; font-size: 2em; margin-top: 10px");
+    scoreTable.appendChild(scoreTableBody);
+
+    var dataDisplay = JSON.parse(localStorage.getItem("high-score"));
+    for (var i = 0; i < dataDisplay.length; i++){
+
+        var tableRow = document.createElement("tr");
+        scoreTableBody.appendChild(tableRow);
+
+        var userName = document.createElement("td");
+        userName.innerHTML = dataDisplay[i].name;
+        userName.className = "user-info";
+        tableRow.appendChild(userName);
+
+        var userScore = document.createElement("td");
+        userScore.innerHTML = dataDisplay[i].score;
+        userScore.className = "user-info";
+        tableRow.appendChild(userScore);
+    }
+    var buttonDiv = document.createElement("div");
+    buttonDiv.setAttribute("style", "width: 50%; text-align: center; margin: 0 auto;")
+    scoreSectionEl.appendChild(buttonDiv);
+
+    var refreshButton = document.createElement("button");
+    refreshButton.innerHTML = "Refresh Quiz";
+    refreshButton.setAttribute("onclick", "restartGame()");
+    refreshButton.className = "btn";
+    buttonDiv.appendChild(refreshButton);
+}
+
+buttonEl.addEventListener("click", generateQuestion);
 restartButtonEl.addEventListener("click", restartGame);
 saveScoreEl.addEventListener("click", saveScore);
+viewScoresEl.addEventListener("click", displayScores);
