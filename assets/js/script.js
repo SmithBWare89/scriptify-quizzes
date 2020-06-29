@@ -75,6 +75,7 @@ var quiz = [
 // Global Variables
 var pageContentEl = document.querySelector("#page-content");
 var index = 0;
+var scoreCount = 0;
 
 // Header Variables
 var timerEl = document.querySelector("#timer");
@@ -84,8 +85,35 @@ var viewScoresEl = document.querySelector("#view-scores");
 var introductionEl = document.querySelector(".introduction");
 var startButtonEl = document.querySelector("#start-btn");
 
-// Generate Questions
+// Quiz Page Variables
+var sectionContainerEl = document.querySelector(".quiz-display");
+var quizContainerEl = document.querySelector("#quiz-container");
+var questionContainerEl = document.querySelector("#question-title");
+var toggleCorrectEl = document.querySelector("#correct-notify");
+var toggleWrongEl = document.querySelector("#wrong-notify");
+
+function countDown() {
+    setInterval(function() {
+        if (timeLeft < 0) {
+            clearInterval(timeLeft = 0);
+            timerEl.innerHTML = timeLeft;
+            return generateScore();
+        } else if (index === quiz.length) {
+            clearInterval(timeLeft = 0);
+            timerEl.innerHTML = timeLeft;
+            return generateScore();
+        } 
+        timerEl.innerHTML = timeLeft;
+        timeLeft -=1;
+    }, 1000)
+}
+
 function generateQuestion() {
+    // If timer is set to 90 then start timer
+    if (timeLeft === 90) {
+        countDown();
+    }
+
     // Remove introduction section from page
     introductionEl.remove();
     // Display quiz questions section
@@ -124,6 +152,8 @@ function verifyAnswer(clickedAnswer) {
     } else {
         // do not increment score. display answer was incorrect
         index++;
+        // decrease time for wrong answers
+        timeLeft -= 5;
         toggleWrongEl.classList.remove("wrong-notify");
     }
     // return to generate new question.
