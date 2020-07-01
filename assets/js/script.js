@@ -97,13 +97,13 @@ var scoreCount = 0;
 
 
 function countDown() {
-    setInterval(function() {
+    var intervalTimer = setInterval(function() {
         if (timeLeft < 0) {
-            clearInterval(timeLeft = 0);
+            clearInterval(intervalTimer);
             timerEl.innerHTML = timeLeft;
             return generateScore();
         } else if (index === quiz.length) {
-            clearInterval(timeLeft = 0);
+            clearInterval(intervalTimer);
             timerEl.innerHTML = timeLeft;
             return generateScore();
         } 
