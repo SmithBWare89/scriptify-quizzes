@@ -40,7 +40,7 @@ var quiz = [
         correctAnswer: "All of the above"
     },
     {
-        question: "Which of the follow code options generates a window for user input?",
+        question: "Which of the following code options generates a window for user input?",
         answers: [
             "window('hello');",
             "console.log('Hello')",
@@ -192,10 +192,10 @@ function restartGame() {
 }
 
 function saveScore() {
-    var localStorageData = JSON.parse(localStorage.getItem("high-score"));
     if (localStorageData === null) {
         localStorage.setItem("high-score", []);
     }
+    var localStorageData = JSON.parse(localStorage.getItem("high-score"));
     var data = {name: userInitialsEl.value, score: scoreCount};
     localStorageData.push(data);
     localStorage.setItem("high-score", JSON.stringify(localStorageData));
