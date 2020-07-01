@@ -1,6 +1,6 @@
 var quiz = [
     {
-        question: "Which is not a valid Javascript data type?",
+        question: "Which of these is not a valid Javascript data type?",
         answers: [
             "A string",
             "An array",
@@ -69,6 +69,26 @@ var quiz = [
         ],
         correctAnswer: "Do Wah Diddy Baby Dum Diddy Do"
     },
+    {
+        question: "Const and Let are not valid replacements for Var.",
+        answers: ["True", "False"],
+        correctAnswer: "False"
+    },
+    {
+        question: "A function without a name is called a ____",
+        answers: ["Undefined Function", "Anonymous Function", "Jaqen H'ghar Function", "Null Function"],
+        correctAnswer: "Anonymous Function"
+    },
+    {
+        question: "Objects are enclosed by these characters.",
+        answers: ["Square Brackets", "Curly Brackets", "Double Quotes", "Single Quotes"],
+        correctAnswer: "Curly Brackets"
+    },
+    {
+        question: "What is the name for the data stored within an object",
+        answers: ["Key/Value Pair", "Object/Value Info", "Object Array", "Attribute/Key Pair"],
+        correctAnswer: "Key/Value Pair"
+    }
 ];
 var viewScoresEl = document.querySelector("#view-scores");
 var scoreSectionEl = document.querySelector(".high-score-display");
